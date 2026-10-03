@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kamulanga Secondary School</title>
+<meta name="description" content="Results, timetables, class notes and announcements for Kamulanga Secondary School.">
+<meta name="theme-color" content="#1b8f77">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg-a:#1b8f77;--bg-b:#48c2a2;--bg-c:#86ead0;
+  --paper:#f7fffc;--paper-2:#e8f7f1;--ink:#0a3a31;--ink-soft:#3b6b60;--rule:#cfe6de;--field-line:#66948a;
+  --accent:#0b6b59;--accent-ink:#ffffff;--accent-hi:#095646;
+  --danger:#a3241c;--danger-bg:#fde9e6;--danger-btn:#a3241c;--danger-btn-ink:#ffffff;
+  --ok:#0b6b59;--ok-bg:#ddf5ec;--wait:#7a4308;--wait-bg:#fff0d8;
+  --coral:#ff7a7a;--peach:#ffb27a;--focus:#ff5a3c;
+  --shadow:0 24px 60px rgba(4,60,48,.28);
+  --toast-bg:#062b24;--toast-ink:#ffffff;--bar:rgba(3,48,40,.62);--hair:rgba(255,255,255,.3);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg-a:#04211c;--bg-b:#0a3f34;--bg-c:#106350;
+    --paper:#0c2b25;--paper-2:#12382f;--ink:#e4fbf3;--ink-soft:#9cccbf;--rule:#1f4a3f;--field-line:#4f8b7d;
+    --accent:#5fd9b5;--accent-ink:#03211a;--accent-hi:#7be6c6;
+    --danger:#ff9a90;--danger-bg:#3a1714;--danger-btn:#ff9a90;--danger-btn-ink:#2a0a07;
+    --ok:#7be6c6;--ok-bg:#12382f;--wait:#ffcf8a;--wait-bg:#3a2a10;
+    --shadow:0 24px 60px rgba(0,0,0,.5);
+    --toast-bg:#e4fbf3;--toast-ink:#062b24;--bar:rgba(2,20,17,.72);--hair:rgba(255,255,255,.12);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg-a:#04211c;--bg-b:#0a3f34;--bg-c:#106350;
+  --paper:#0c2b25;--paper-2:#12382f;--ink:#e4fbf3;--ink-soft:#9cccbf;--rule:#1f4a3f;--field-line:#4f8b7d;
+  --accent:#5fd9b5;--accent-ink:#03211a;--accent-hi:#7be6c6;
+  --danger:#ff9a90;--danger-bg:#3a1714;--danger-btn:#ff9a90;--danger-btn-ink:#2a0a07;
+  --ok:#7be6c6;--ok-bg:#12382f;--wait:#ffcf8a;--wait-bg:#3a2a10;
+  --shadow:0 24px 60px rgba(0,0,0,.5);
+  --toast-bg:#e4fbf3;--toast-ink:#062b24;--bar:rgba(2,20,17,.72);--hair:rgba(255,255,255,.12);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;min-height:100vh;font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.55;color:var(--ink);background-color:var(--bg-b);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(160deg,var(--bg-a) 0%,var(--bg-b) 55%,var(--bg-c) 100%)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(90deg,var(--hair) 1px,transparent 1px);background-size:16.6667% 100%}
+@media (max-width:640px){body::after{background-size:33.3333% 100%}}
+[hidden]{display:none!important}
+h1,h2,h3{margin:0}
+a{color:var(--accent)}
+img,svg{max-width:100%}
+a,button,summary,select,label,input,textarea{touch-action:manipulation;-webkit-tap-highlight-color:rgba(255,90,60,.22)}
+button{font:inherit;cursor:pointer}
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* layout */
+.app{max-width:1120px;margin:0 auto;padding:16px 16px 40px}
+.panel{background:var(--paper);color:var(--ink);border-radius:6px;padding:clamp(18px,3.2vw,34px);box-shadow:var(--shadow)}
+.panel:focus{outline:none}
+.stack{display:grid;gap:16px}
+.row2{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.hide-xs{display:inline-flex}
+@media (max-width:519px){.hide-xs{display:none!important}}
+
+/* type */
+.page-title{font:700 clamp(1.7rem,4vw,2.5rem)/1.12 'Playfair Display',Georgia,'Times New Roman',serif;margin:0 0 8px}
+.lead{margin:0 0 22px;color:var(--ink-soft);max-width:62ch}
+h2.sec{font:700 1.45rem/1.2 'Playfair Display',Georgia,serif;margin:0 0 6px}
+h3.item{font:700 1.08rem/1.3 'Manrope',system-ui,sans-serif;margin:6px 0 4px}
+.sec-gap{margin-top:34px}
+.muted{color:var(--ink-soft)}
+.small{font-size:14px}
+
+/* brand */
+.brand{display:inline-flex;align-items:center;gap:12px;min-height:44px;color:inherit;text-decoration:none;font:700 16px/1.2 'Playfair Display',Georgia,serif}
+.mark{display:inline-grid;place-items:center;flex:none;width:38px;height:38px;border:1.5px solid currentColor;border-radius:2px;font:700 20px/1 'Playfair Display',Georgia,serif}
+.mark.sm{width:28px;height:28px;font-size:15px}
+@media (max-width:420px){.brand{font-size:14px;gap:10px}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border:1.5px solid transparent;border-radius:4px;font:600 15px/1 'Manrope',system-ui,sans-serif;text-decoration:none;user-select:none;-webkit-user-select:none;transition:transform .12s ease,background-color .15s ease,border-color .15s ease}
+.btn:active{transform:scale(.96)}
+.btn[disabled]{opacity:.55;pointer-events:none}
+.btn-solid{background:var(--accent);color:var(--accent-ink)}
+.btn-solid:active{background:var(--accent-hi)}
+@media (hover:hover){.btn-solid:hover{background:var(--accent-hi)}.btn-line:hover{background:var(--paper-2)}.tab:hover{background:rgba(3,48,40,.55)}.chip-btn:hover{border-color:var(--accent)}}
+.btn-line{background:transparent;border-color:currentColor;color:var(--accent)}
+.btn-line:active{background:var(--paper-2)}
+.btn-light{background:#fff;color:#0a3a31}
+.btn-light:active{background:#e4fbf3}
+.btn-danger{background:var(--danger-btn);color:var(--danger-btn-ink)}
+.btn-ghost{background:transparent;color:inherit}
+.btn-ghost:active{background:rgba(255,255,255,.18)}
+.btn-sm{min-height:44px;padding:0 16px;font-size:14px}
+.btn svg{width:18px;height:18px;flex:none}
+.icon-btn{display:inline-grid;place-items:center;width:44px;height:44px;flex:none;border:0;border-radius:6px;background:transparent;color:var(--ink-soft);transition:transform .12s ease,background-color .15s ease}
+.icon-btn:active{transform:scale(.9);background:var(--paper-2)}
+.icon-btn svg{width:20px;height:20px}
+
+/* forms */
+.field{display:grid;gap:6px}
+.field>label,.field>.lbl{font-weight:600;font-size:14px}
+.field input,.field select,.field textarea,.search{width:100%;min-height:50px;padding:12px 14px;font:500 16px/1.4 'Manrope',system-ui,sans-serif;color:var(--ink);background:var(--paper);border:1.5px solid var(--field-line);border-radius:6px}
+.field textarea{min-height:110px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus,.search:focus{border-color:var(--accent)}
+.hint{font-size:13.5px;color:var(--ink-soft);margin:0}
+.pw{position:relative;display:block}
+.pw input{padding-right:54px}
+.pw-toggle{position:absolute;right:3px;top:3px;width:44px;height:44px;border:0;border-radius:6px;background:transparent;color:var(--ink-soft);display:grid;place-items:center}
+.pw-toggle:active{background:var(--paper-2)}
+.err{margin:0;min-height:1.4em;color:var(--danger);font-weight:600;font-size:14.5px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;margin-bottom:20px;background:var(--paper-2);border-radius:8px}
+.seg a{display:grid;place-items:center;min-height:46px;border-radius:6px;color:var(--ink-soft);font-weight:600;text-decoration:none;transition:transform .12s ease,background-color .15s ease}
+.seg a:active{transform:scale(.97)}
+.seg a.on{background:var(--paper);color:var(--ink);box-shadow:0 1px 4px rgba(4,60,48,.2)}
+.alt{margin:18px 0 0;color:var(--ink-soft)}
+.search{margin:14px 0}
+
+/* chips and tags */
+.chip{display:inline-block;padding:2px 10px;border-radius:999px;font-size:13px;font-weight:700;line-height:1.6;white-space:nowrap}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}
+.chip.wait{background:var(--wait-bg);color:var(--wait)}
+.chip.no{background:var(--danger-bg);color:var(--danger)}
+.tag{display:inline-block;padding:1px 10px;border-radius:999px;font-size:13px;font-weight:700;background:var(--paper-2);color:var(--ink)}
+.tag.t-urgent{background:var(--danger-bg);color:var(--danger)}
+.tag.t-exams{background:var(--wait-bg);color:var(--wait)}
+.tag.t-events{background:var(--ok-bg);color:var(--ok)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;margin:0 -2px 12px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip-btn{flex:none;min-height:44px;padding:0 18px;border:1.5px solid var(--field-line);border-radius:999px;background:transparent;color:var(--ink);font-weight:600;font-size:14.5px;transition:transform .12s ease,background-color .15s ease}
+.chip-btn:active{transform:scale(.95)}
+.chip-btn.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+
+/* banners, empty */
+.banner{margin:0 0 18px;padding:12px 16px;border-left:4px solid var(--wait);background:var(--wait-bg);color:var(--wait);font-weight:600;border-radius:0 6px 6px 0}
+.banner a{color:inherit}
+.empty{padding:26px 0;color:var(--ink-soft);max-width:60ch}
+.empty strong{color:var(--ink);display:block;font-size:1.05rem;margin-bottom:2px}
+
+/* top bar and tabs */
+.topbar{position:sticky;top:8px;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;padding:6px 8px 6px 14px;background:var(--bar);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;border-radius:6px}
+.who{display:flex;align-items:center;gap:6px}
+.who-name{font-weight:600;font-size:14px;max-width:26ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:519px){.who-name{display:none}}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 0 14px;padding:2px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{position:relative;display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px;border-radius:999px;color:#fff;background:rgba(3,48,40,.4);text-decoration:none;font-weight:600;font-size:14.5px;white-space:nowrap;transition:transform .12s ease,background-color .15s ease}
+.tab svg{width:20px;height:20px;flex:none}
+.tab:active{transform:scale(.95)}
+.tab.on{background:var(--paper);color:var(--ink)}
+.badge{min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:var(--coral);color:#3a0808;font:700 12px/22px 'Manrope',system-ui,sans-serif;text-align:center}
+@media (max-width:759px){
+  .app{padding-bottom:100px}
+  .tabs{position:fixed;left:0;right:0;bottom:0;z-index:30;margin:0;padding:6px 6px calc(6px + env(safe-area-inset-bottom));gap:2px;background:var(--paper);border-top:1px solid var(--rule);box-shadow:0 -8px 24px rgba(4,60,48,.2)}
+  .tab{flex:1 0 auto;min-width:58px;min-height:56px;flex-direction:column;justify-content:center;gap:2px;padding:6px 6px;border-radius:10px;background:transparent;color:var(--ink-soft);font-size:11.5px}
+  .tab.on{background:var(--paper-2);color:var(--ink)}
+  .tab .badge{position:absolute;top:2px;left:calc(50% + 6px);min-width:18px;height:18px;line-height:18px;font-size:11px;padding:0 4px}
+}
+
+/* hero */
+.stage{position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:min(720px,calc(100svh - 32px));color:#fff;border-radius:6px;box-shadow:var(--shadow);background:linear-gradient(115deg,#0a5f4f 0%,#12806a 50%,#33b394 100%)}
+.stage-lines{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(90deg,rgba(255,255,255,.2) 1px,transparent 1px);background-size:16.6667% 100%}
+.wave{position:absolute;right:0;bottom:8%;width:min(46%,520px);height:auto;pointer-events:none;opacity:.95}
+.stage-head{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px clamp(16px,4vw,40px)}
+.head-links{display:flex;align-items:center;gap:10px}
+.link-plain{display:inline-flex;align-items:center;min-height:44px;padding:0 10px;color:#fff;font-weight:600;text-decoration:none}
+@media (max-width:640px){.link-plain{display:none}}
+.stage-body{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr);gap:8px;align-items:center;flex:1;padding:8px clamp(20px,5vw,64px) 36px}
+@media (min-width:860px){.stage-body{grid-template-columns:minmax(0,4.6fr) minmax(0,7.4fr);gap:clamp(20px,4vw,64px)}}
+.kwrap{position:relative;width:min(56vw,300px);margin:0 auto 10px}
+@media (min-width:860px){.kwrap{width:min(100%,360px);margin:0}}
+.kart{position:relative;z-index:1;display:block;width:100%;height:auto;filter:drop-shadow(0 18px 28px rgba(2,40,32,.42))}
+.sun{position:absolute;z-index:0;width:82%;aspect-ratio:1;left:14%;top:-9%;border-radius:50%;background:linear-gradient(170deg,#ffc27a 0%,#ff8f85 55%,#ff6f9a 100%)}
+.copy h1{font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-weight:800;line-height:1;letter-spacing:-.01em}
+.h1-a{display:block;font-size:clamp(3rem,9.4vw,6.4rem)}
+.h1-b{display:block;margin-top:.4em;font-size:clamp(1.35rem,3.2vw,2.3rem);font-weight:600;line-height:1.15}
+.lede{margin:22px 0 10px;max-width:34ch;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:600;line-height:1.4}
+.sub{margin:0 0 26px;max-width:48ch;color:rgba(255,255,255,.93)}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.stage .btn-line{color:#fff}
+.stage .btn-line:active{background:rgba(255,255,255,.16)}
+@media (hover:hover){.stage .btn-line:hover{background:rgba(255,255,255,.14)}.btn-light:hover{background:#e4fbf3}}
+.stage-foot{position:relative;z-index:2;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px clamp(16px,4vw,40px);border-top:1px solid rgba(255,255,255,.22);font-size:13px;color:rgba(255,255,255,.9)}
+
+.below{margin-top:18px}
+.split{display:grid;gap:28px}
+.split>*+*{border-top:1px solid var(--rule);padding-top:28px}
+@media (min-width:900px){.split{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:0}.split>*{padding:0 32px}.split>*:first-child{padding-left:0}.split>*+*{border-top:0;border-left:1px solid var(--rule);padding-top:0;padding-right:0}}
+.ann-list{list-style:none;margin:0;padding:0}
+.ann{padding:16px 0;border-bottom:1px solid var(--rule)}
+.ann:first-child{padding-top:6px}
+.ann:last-child{border-bottom:0}
+.ann-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+.ann p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.ann p.clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.link-more{display:inline-flex;align-items:center;min-height:44px;margin-top:6px;font-weight:700}
+ol.steps{counter-reset:s;list-style:none;margin:16px 0 22px;padding:0;display:grid;gap:16px}
+ol.steps li{counter-increment:s;position:relative;padding-left:52px;min-height:38px}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font:700 17px/1 'Playfair Display',Georgia,serif}
+ol.steps b{display:block}
+.foot{margin:18px 0 0;padding:14px 16px;border-radius:6px;background:var(--bar);color:#fff;font-size:14px;text-align:center}
+.foot a{color:#fff;font-weight:700}
+
+/* auth */
+.auth{display:grid;gap:14px}
+@media (min-width:860px){.auth{grid-template-columns:minmax(0,5fr) minmax(0,6fr);align-items:stretch}}
+.auth-art{display:none;position:relative;overflow:hidden;border-radius:6px;color:#fff;background:linear-gradient(140deg,#0a5f4f 0%,#12806a 55%,#33b394 100%);box-shadow:var(--shadow);padding:40px;align-content:center;justify-items:start;gap:24px}
+@media (min-width:860px){.auth-art{display:grid}}
+.auth-art .kwrap{width:min(100%,280px);margin:0}
+.auth-art p{margin:0;max-width:26ch;font:700 1.5rem/1.25 'Playfair Display',Georgia,serif}
+.auth-form{align-self:start}
+.auth-form .btn{width:100%}
+
+/* pass card */
+.pass{position:relative;overflow:hidden;max-width:440px;min-height:210px;padding:20px 22px 18px;border-radius:10px;color:#fff;background:linear-gradient(135deg,#06483b 0%,#0e7a65 60%,#1a9a80 100%);box-shadow:0 14px 34px rgba(4,60,48,.35);display:grid;align-content:space-between;gap:14px;margin:0 0 18px}
+.pass::after{content:"";position:absolute;right:-46px;top:-46px;width:128px;height:128px;border-radius:50%;background:linear-gradient(170deg,#ffc27a,#ff7f95)}
+.pass-top{position:relative;z-index:1;display:flex;align-items:center;gap:10px;max-width:calc(100% - 64px);font-weight:700;font-size:13.5px;line-height:1.3}
+.pass-name{position:relative;z-index:1;font:700 clamp(1.4rem,5vw,1.8rem)/1.15 'Playfair Display',Georgia,serif;overflow-wrap:anywhere}
+.pass-grade{font-weight:600;opacity:.95}
+.pass-no{position:relative;z-index:1;font:700 clamp(1.4rem,6vw,1.9rem)/1.1 'Manrope',system-ui,sans-serif;letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.pass-foot{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px}
+.pass .chip{background:#fff;color:#0a3a31}
+.pass .chip.wait{background:#fff0d8;color:#6b3a05}
+.pass .chip.no{background:#fde9e6;color:#8f1d16}
+
+/* dashboard content */
+.grid2{display:grid;gap:30px}
+@media (min-width:900px){.grid2{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:52px}}
+.lessons{list-style:none;margin:8px 0 0;padding:0}
+.lessons li{display:grid;grid-template-columns:minmax(96px,auto) 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--rule)}
+.lessons li:last-child{border-bottom:0}
+.lessons .t{color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.lessons .s{font-weight:700}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th,.tbl td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
+.tbl thead th{font-size:13.5px;color:var(--ink-soft);font-weight:700}
+.tbl .num{text-align:right;font-variant-numeric:tabular-nums}
+.tbl tfoot th,.tbl tfoot td{border-bottom:0;border-top:2px solid var(--ink);font-weight:700}
+.sheet-card{padding:20px 0 26px;border-bottom:1px solid var(--rule)}
+.sheet-card:last-child{border-bottom:0}
+.sheet-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.sheet-head h3{font:700 1.25rem/1.2 'Playfair Display',Georgia,serif}
+.comment{margin:12px 0 0;padding:10px 14px;background:var(--paper-2);border-radius:6px;white-space:pre-wrap}
+.tt-week{display:none}
+.tt-week th,.tt-week td{padding:10px 12px;border:1px solid var(--rule);text-align:left;min-width:110px}
+.tt-week thead th{background:var(--paper-2)}
+.tt-week .today{background:var(--ok-bg)}
+.tt-week .tcol{min-width:120px;color:var(--ink-soft);font-variant-numeric:tabular-nums;font-weight:600}
+@media (min-width:900px){.tt-week{display:block}.tt-day{display:none}}
+details.note{border-bottom:1px solid var(--rule)}
+details.note summary{display:grid;gap:2px;min-height:56px;padding:14px 32px 14px 0;position:relative;cursor:pointer;list-style:none}
+details.note summary::-webkit-details-marker{display:none}
+details.note summary::after{content:"";position:absolute;right:6px;top:24px;width:9px;height:9px;border-right:2px solid var(--ink-soft);border-bottom:2px solid var(--ink-soft);transform:rotate(45deg);transition:transform .15s ease}
+details.note[open] summary::after{transform:rotate(-135deg);top:28px}
+details.note summary:active{background:var(--paper-2)}
+.note-title{font-weight:700;font-size:1.05rem}
+.note-meta{font-size:14px;color:var(--ink-soft);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.note-body{padding:0 0 18px;white-space:pre-wrap;overflow-wrap:anywhere}
+.note-body .btn{margin-top:12px}
+details.acct{margin-top:34px;border-top:1px solid var(--rule);padding-top:8px}
+details.acct summary{min-height:48px;display:flex;align-items:center;font-weight:700;cursor:pointer}
+details.acct form{max-width:420px;padding:8px 0 4px}
+
+/* admin lists */
+.person{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 18px;align-items:center;padding:16px 0;border-bottom:1px solid var(--rule)}
+.person:last-child{border-bottom:0}
+.person .nm{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-weight:700}
+.person .meta{font-size:14px;color:var(--ink-soft);margin-top:2px;overflow-wrap:anywhere}
+.p-act{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media (max-width:640px){.person{grid-template-columns:minmax(0,1fr)}.p-act{justify-content:flex-start}}
+.plain-list{list-style:none;margin:0;padding:0}
+.res-row{display:grid;grid-template-columns:minmax(0,1fr) 110px 44px;gap:8px;align-items:center;margin-bottom:8px}
+.res-row input{width:100%;min-height:48px;padding:10px 12px;font:500 16px/1.3 'Manrope',system-ui,sans-serif;color:var(--ink);background:var(--paper);border:1.5px solid var(--field-line);border-radius:6px}
+.tt-edit{border-collapse:separate;border-spacing:0;min-width:760px;width:100%}
+.tt-edit th,.tt-edit td{padding:4px;border-bottom:1px solid var(--rule)}
+.tt-edit thead th{padding:8px 6px;font-size:13.5px;text-align:left;color:var(--ink-soft)}
+.tt-edit tbody th{position:sticky;left:0;z-index:1;background:var(--paper);min-width:190px}
+.tt-edit input{width:100%;min-height:46px;padding:8px 10px;font:500 15px/1.3 'Manrope',system-ui,sans-serif;color:var(--ink);background:var(--paper);border:1.5px solid var(--field-line);border-radius:6px}
+.t-wrap{display:flex;align-items:center;gap:2px}
+.callout{padding:14px 16px;border-radius:6px;background:var(--paper-2)}
+.callout p{margin:0}
+.callout p+p{margin-top:8px}
+code.big{display:block;margin:12px 0;padding:14px;border-radius:6px;background:var(--paper-2);font:700 1.5rem/1.2 'Manrope',system-ui,sans-serif;letter-spacing:.08em;text-align:center;overflow-wrap:anywhere}
+
+/* toast and modal */
+.toast{position:fixed;left:50%;bottom:24px;z-index:200;max-width:min(92vw,440px);padding:13px 20px;border-radius:8px;background:var(--toast-bg);color:var(--toast-ink);font-weight:600;font-size:15px;box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;transform:translate(-50%,12px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast.err{background:var(--danger-btn);color:var(--danger-btn-ink)}
+@media (max-width:759px){.toast{bottom:calc(84px + env(safe-area-inset-bottom))}}
+.scrim{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(2,28,23,.6)}
+.sheet{width:min(460px,100%);padding:24px;border-radius:8px;background:var(--paper);color:var(--ink);box-shadow:0 24px 60px rgba(0,0,0,.4);animation:rise .18s ease-out}
+.sheet h3{font:700 1.35rem/1.25 'Playfair Display',Georgia,serif;margin-bottom:8px}
+.sheet p{margin:0 0 16px;color:var(--ink-soft)}
+.sheet .btns{justify-content:flex-end;margin-top:18px}
+@keyframes rise{from{transform:translateY(14px);opacity:0}to{transform:none;opacity:1}}
+@media (max-width:600px){.scrim{align-items:flex-end;padding:0}.sheet{width:100%;border-radius:14px 14px 0 0;padding-bottom:calc(24px + env(safe-area-inset-bottom))}.sheet .btns .btn{flex:1}}
+noscript{display:block;padding:24px;color:#fff;text-align:center}
+</style>
+<link rel="stylesheet" href="glass.css">
+</head>
+<body>
+<div id="app"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<noscript>This site needs JavaScript to show results, timetables and notes.</noscript>
+
+<script>
+(function(){
+'use strict';
+
+/* ===== constants ===== */
+var SCHOOL='Kamulanga Secondary School';
+var GRADES=['Grade 8','Grade 9','Grade 10','Grade 11','Grade 12'];
+var DAYS=['Mon','Tue','Wed','Thu','Fri'];
+var DAYS_FULL=['Monday','Tuesday','Wednesday','Thursday','Friday'];
+var TAGS=['General','Exams','Events','Urgent'];
+var TERMS=['Term 1','Term 2','Term 3'];
+var SUBJECTS=['English','Mathematics','Biology','Chemistry','Physics','Geography','History','Civic Education','Religious Education','Computer Studies','Literature','Commerce','Principles of Accounts','French'];
+var KEY='kss:data:v2', SKEY='kss:session:v2';
+/* First-run admin login. The admin can change the password in Settings. */
+var DEFAULT_ADMIN_USER='admin', DEFAULT_ADMIN_PW='kss.2026';
+var PUPIL_TABS=[['home','Home','home'],['announcements','News','bell'],['results','Results','chart'],['timetable','Timetable','cal'],['notes','Notes','book']];
+var ADMIN_TABS=[['pupils','Pupils','users'],['announcements','News','bell'],['results','Results','chart'],['timetable','Timetable','cal'],['notes','Notes','book'],['settings','Settings','sliders']];
+
+/* ===== small helpers ===== */
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var app=document.getElementById('app');
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function clean(s){return String(s||'').replace(/\s+/g,' ').trim()}
+function uid(){return Date.now().toString(36)+rnd(3)}
+function fmtDate(t){return new Date(t).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}
+function rnd(n){var a=new Uint8Array(n);if(window.crypto&&crypto.getRandomValues){crypto.getRandomValues(a)}else{for(var i=0;i<n;i++)a[i]=Math.floor(Math.random()*256)}return Array.prototype.map.call(a,function(b){return ('0'+b.toString(16)).slice(-2)}).join('')}
+function tempPassword(){var al='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',out='',a=new Uint8Array(8);if(window.crypto&&crypto.getRandomValues){crypto.getRandomValues(a)}else{for(var i=0;i<8;i++)a[i]=Math.floor(Math.random()*256)}for(var j=0;j<8;j++)out+=al[a[j]%al.length];return out}
+function haptic(){try{if(navigator.vibrate)navigator.vibrate(8)}catch(e){}}
+
+var ICONS={
+  home:'<path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/>',
+  bell:'<path d="M6 16v-5a6 6 0 1112 0v5l2 2H4l2-2z"/><path d="M10 21h4"/>',
+  chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+  cal:'<path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"/>',
+  book:'<path d="M5 4h11a3 3 0 013 3v13H8a3 3 0 01-3-3V4z"/><path d="M5 17a3 3 0 013-3h11"/>',
+  users:'<circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0112 0"/><path d="M17 5.5a2.7 2.7 0 010 5.3M18 14.2A5 5 0 0122 19"/>',
+  sliders:'<path d="M4 7h9M17 7h3M4 17h3M11 17h9M13 5v4M7 15v4"/>',
+  out:'<path d="M9 4H5v16h4M16 8l4 4-4 4M20 12H9"/>',
+  eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  eyeoff:'<path d="M3 3l18 18M10.6 6.1A9.7 9.7 0 0112 6c6 0 10 6 10 6a17 17 0 01-3.2 3.7M6.3 7.6A16.5 16.5 0 002 12s4 7 10 7c1.6 0 3-.4 4.3-1"/>',
+  x:'<path d="M6 6l12 12M18 6L6 18"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  trash:'<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>',
+  edit:'<path d="M4 20h4L19 9l-4-4L4 16v4z"/>',
+  copy:'<rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M16 8V5a1 1 0 00-1-1H5a1 1 0 00-1 1v10a1 1 0 001 1h3"/>',
+  check:'<path d="M4 12l5 5L20 6"/>',
+  link:'<path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/>'
+};
+function ic(n,s){s=s||20;return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICONS[n]+'</svg>'}
+
+/* ===== password hashing ===== */
+function toHex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return ('0'+b.toString(16)).slice(-2)}).join('')}
+async function hashPw(pw,salt){
+  try{
+    if(window.crypto&&crypto.subtle){
+      var enc=new TextEncoder();
+      var key=await crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveBits']);
+      var bits=await crypto.subtle.deriveBits({name:'PBKDF2',salt:enc.encode(salt),iterations:100000,hash:'SHA-256'},key,256);
+      return toHex(bits);
+    }
+  }catch(e){}
+  var s=salt+':'+pw,h1=0xdeadbeef,h2=0x41c6ce57;
+  for(var i=0;i<s.length;i++){var c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
+  h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);
+  h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
+  return 'x'+(4294967296*(2097151&h2)+(h1>>>0)).toString(16);
+}
+
+/* ===== data store (browser storage; swap these functions for a server later) ===== */
+var DB=null, memStore=null, memSession=null, storageOk=true, session=null;
+function blank(){return {v:1,counter:0,admin:null,pupils:[],news:[],results:[],timetable:{},notes:[]}}
+function load(){try{var raw=localStorage.getItem(KEY);return raw?JSON.parse(raw):null}catch(e){storageOk=false;return memStore}}
+function save(){memStore=DB;try{localStorage.setItem(KEY,JSON.stringify(DB));storageOk=true}catch(e){storageOk=false}}
+function mutate(fn){var fresh=load();if(fresh)DB=fresh;var out=fn(DB);save();return out}
+function getSession(){try{var s=sessionStorage.getItem(SKEY);return s?JSON.parse(s):memSession}catch(e){return memSession}}
+function setSession(s){memSession=s;session=s;try{if(s)sessionStorage.setItem(SKEY,JSON.stringify(s));else sessionStorage.removeItem(SKEY)}catch(e){}}
+function isAdmin(){var s=getSession();return !!(s&&s.role==='admin')}
+function guardAdmin(){if(isAdmin())return true;toast('Only the admin can change school information.','err');return false}
+function nextPass(){var n=0;mutate(function(db){db.counter=(db.counter||0)+1;n=db.counter});return 'KSS-'+new Date().getFullYear()+'-'+('000'+n).slice(-4)}
+function pupilById(id){return DB.pupils.find(function(p){return p.id===id})}
+
+/* ===== UI state ===== */
+var ui={filter:'pending',editNews:null,editRes:null,editNote:null,ttClass:GRADES[0],ttDay:null,noteSubject:'all',created:null};
+var attempts={};
+function lockedFor(k){var a=attempts[k];return a&&a.until>Date.now()?Math.ceil((a.until-Date.now())/1000):0}
+function recordFail(k){var a=attempts[k]||(attempts[k]={n:0,until:0});a.n++;if(a.n>=5){a.until=Date.now()+30000;a.n=0}}
+
+/* ===== toast, modal, clipboard ===== */
+var toastT=0;
+function toast(msg,kind){var t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(kind?' '+kind:'');clearTimeout(toastT);toastT=setTimeout(function(){t.className='toast'},3200);haptic()}
+function modal(o){
+  return new Promise(function(resolve){
+    var d=document.createElement('div');d.className='scrim';
+    d.innerHTML='<div class="sheet" role="alertdialog" aria-modal="true" aria-labelledby="md-t"><h3 id="md-t">'+esc(o.title)+'</h3><div>'+o.body+'</div><div class="btns">'+o.buttons.map(function(b,i){return '<button type="button" class="btn '+(b.cls||'btn-line')+'" data-v="'+i+'">'+esc(b.label)+'</button>'}).join('')+'</div></div>';
+    document.body.appendChild(d);
+    function done(v){d.remove();document.removeEventListener('keydown',key);resolve(v)}
+    function key(e){if(e.key==='Escape')done(-1)}
+    d.addEventListener('click',function(e){var b=e.target.closest('[data-v]');if(b)done(Number(b.dataset.v));else if(e.target===d)done(-1)});
+    document.addEventListener('keydown',key);
+    var first=d.querySelector('[data-v]');if(first)first.focus();
+  });
+}
+async function confirmBox(title,body,ok,danger){
+  var v=await modal({title:title,body:'<p>'+esc(body)+'</p>',buttons:[{label:'Cancel',cls:'btn-line'},{label:ok,cls:danger?'btn-danger':'btn-solid'}]});
+  return v===1;
+}
+async function copyText(t){
+  try{await navigator.clipboard.writeText(t);return true}catch(e){
+    try{var ta=document.createElement('textarea');ta.value=t;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;opacity:0;top:0';document.body.appendChild(ta);ta.select();var ok=document.execCommand('copy');ta.remove();return ok}catch(e2){return false}
+  }
+}
+
+/* ===== the K illustration: a letter K filled with a bookshelf ===== */
+function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function kArt(id){
+  var rand=mulberry(11),cols=['#ff7a7a','#ffb27a','#79e3c3','#f7fffc','#23a58a','#f3d9a6','#ff9fb0','#9ad9ff'],out='',shelves=6,sh=420/shelves;
+  for(var i=0;i<shelves;i++){
+    var base=(i+1)*sh-7,x=-6;
+    while(x<346){
+      var w=12+Math.floor(rand()*16),h=Math.round(sh*0.5+rand()*sh*0.32),c=cols[Math.floor(rand()*cols.length)],lean=rand()<0.12?(rand()<0.5?-8:8):0;
+      out+='<g'+(lean?' transform="rotate('+lean+' '+(x+w/2)+' '+base+')"':'')+'><rect x="'+x+'" y="'+(base-h)+'" width="'+w+'" height="'+h+'" fill="'+c+'"/><rect x="'+x+'" y="'+(base-h+8)+'" width="'+w+'" height="3" fill="rgba(6,56,47,.35)"/><rect x="'+x+'" y="'+(base-14)+'" width="'+w+'" height="3" fill="rgba(6,56,47,.3)"/></g>';
+      x+=w+(rand()<0.25?3:0);
+    }
+    out+='<rect x="0" y="'+base+'" width="340" height="7" fill="#062e26"/>';
+  }
+  return '<svg class="kart" viewBox="0 0 340 420" role="img" aria-label="The letter K filled with a shelf of books"><defs><clipPath id="kc-'+id+'"><rect x="0" y="0" width="100" height="420"/><polygon points="70,270 214,0 328,0 184,270"/><polygon points="100,222 206,222 328,420 222,420"/></clipPath></defs><g clip-path="url(#kc-'+id+')"><rect width="340" height="420" fill="#0a4a3e"/>'+out+'</g><path d="M0 0H100V213.75L214 0H328L208 225.1L328 420H222L129.6 270H100V420H0Z" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+}
+
+/* ===== shared view pieces ===== */
+function gradeOf(m){if(m>=80)return ['A','Excellent'];if(m>=70)return ['B','Very good'];if(m>=60)return ['C','Good'];if(m>=50)return ['D','Satisfactory'];if(m>=40)return ['E','Pass'];return ['F','Below pass mark']}
+function statusChip(s){return s==='approved'?'<span class="chip ok">Approved</span>':s==='rejected'?'<span class="chip no">Not approved</span>':'<span class="chip wait">Waiting for approval</span>'}
+function tagClass(t){return 't-'+(TAGS.indexOf(t)>-1?t.toLowerCase():'general')}
+function sortNew(a){return a.slice().sort(function(x,y){return y.createdAt-x.createdAt})}
+function passCard(p){
+  return '<div class="pass"><div class="pass-top"><span class="mark sm">K</span><span>'+SCHOOL+'</span></div><div><div class="pass-name">'+esc(p.name)+'</div><div class="pass-grade">'+esc(p.cls)+'</div></div><div class="pass-no">'+esc(p.id)+'</div><div class="pass-foot">'+statusChip(p.status)+'<span>Issued '+fmtDate(p.createdAt)+'</span></div></div>';
+}
+function annList(items,clamp){
+  return '<ul class="ann-list">'+items.map(function(a){
+    return '<li class="ann"><div class="ann-top"><span class="tag '+tagClass(a.tag)+'">'+esc(a.tag)+'</span><time datetime="'+new Date(a.createdAt).toISOString()+'">'+fmtDate(a.createdAt)+'</time></div><h3 class="item">'+esc(a.title)+'</h3><p'+(clamp?' class="clamp"':'')+'>'+esc(a.body)+'</p></li>';
+  }).join('')+'</ul>';
+}
+function emptyState(title,text){return '<div class="empty"><strong>'+esc(title)+'</strong>'+esc(text)+'</div>'}
+function fieldPw(id,name,label,auto){
+  return '<div class="field"><label for="'+id+'">'+label+'</label><span class="pw"><input id="'+id+'" name="'+name+'" type="password" autocomplete="'+auto+'" autocapitalize="none" autocorrect="off" spellcheck="false" required><button type="button" class="pw-toggle" data-act="toggle-pw" aria-label="Show password">'+ic('eye',20)+'</button></span></div>';
+}
+function gradeOptions(sel){return GRADES.map(function(g){return '<option'+(g===sel?' selected':'')+'>'+g+'</option>'}).join('')}
+function tabsNav(role,active,tabs,badges){
+  return '<nav class="tabs" aria-label="Sections">'+tabs.map(function(t){
+    var b=badges&&badges[t[0]]?'<span class="badge" aria-label="'+badges[t[0]]+' waiting">'+badges[t[0]]+'</span>':'';
+    return '<a class="tab'+(t[0]===active?' on':'')+'" href="#/'+role+'/'+t[0]+'"'+(t[0]===active?' aria-current="page"':'')+'>'+ic(t[2],20)+'<span>'+t[1]+'</span>'+b+'</a>';
+  }).join('')+'</nav>';
+}
+function topbar(label){
+  return '<header class="topbar"><a class="brand" href="#/"><span class="mark">K</span><span class="brand-name">'+SCHOOL+'</span></a><div class="who"><span class="who-name">'+esc(label)+'</span><button type="button" class="btn btn-ghost btn-sm" data-act="signout">'+ic('out',18)+'<span>Sign out</span></button></div></header>';
+}
+
+/* ===== routing ===== */
+function parseRoute(){var p=(location.hash||'').replace(/^#\/?/,'').split('/').filter(Boolean);return {name:p[0]||'home',tab:p[1]||''}}
+function go(h){if(location.hash===h)render({top:true});else location.hash=h}
+window.addEventListener('hashchange',function(){if(parseRoute().name!=='signup')ui.created=null;render({top:true})});
+window.addEventListener('storage',function(e){
+  if(e.key!==KEY||!e.newValue)return;
+  try{DB=JSON.parse(e.newValue)}catch(err){return}
+  var ae=document.activeElement;if(ae&&/^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName))return;
+  render();
+});
+
+function render(o){
+  o=o||{};
+  var y=window.scrollY,r=parseRoute();
+  session=getSession();
+  if(session&&session.role==='pupil'&&!pupilById(session.id)){setSession(null)}
+  if(['home','announcements','signin','signup','pupil','admin'].indexOf(r.name)<0)r={name:'home',tab:''};
+  if((r.name==='signin'||r.name==='signup')&&session&&!(r.name==='signup'&&ui.created)){return go(session.role==='admin'?'#/admin/pupils':'#/pupil/home')}
+  if(r.name==='pupil'&&(!session||session.role!=='pupil'))return go('#/signin/pupil');
+  if(r.name==='admin'&&(!session||session.role!=='admin'))return go('#/signin/admin');
+  var html='',title=SCHOOL;
+  if(r.name==='home'){html=viewHome()}
+  else if(r.name==='announcements'){html=viewPublicNews();title='Announcements, '+SCHOOL}
+  else if(r.name==='signin'){html=viewSignin();title='Sign in, '+SCHOOL}
+  else if(r.name==='signup'){html=viewSignup();title='Sign up, '+SCHOOL}
+  else if(r.name==='pupil'){
+    var p=pupilById(session.id);
+    var tab=PUPIL_TABS.some(function(t){return t[0]===r.tab})?r.tab:'home';
+    if(p.status!=='approved')tab='home';
+    if(tab!==r.tab)return go('#/pupil/'+tab);
+    html=viewPupil(p,tab);title='My school, '+SCHOOL;
+  }else{
+    var atab=ADMIN_TABS.some(function(t){return t[0]===r.tab})?r.tab:'pupils';
+    if(atab!==r.tab)return go('#/admin/'+atab);
+    html=viewAdmin(atab);title='Admin, '+SCHOOL;
+  }
+  app.innerHTML=html;
+  document.title=title;
+  if(o.top){window.scrollTo(0,0);var m=document.getElementById('main');if(m)m.focus({preventScroll:true})}else{window.scrollTo(0,y)}
+}
+
+/* ===== public views ===== */
+function viewHome(){
+  var latest=sortNew(DB.news).slice(0,4);
+  var nav=session?'<a class="btn btn-light btn-sm" href="#/'+(session.role==='admin'?'admin/pupils':'pupil/home')+'">My dashboard</a>':'<a class="btn btn-line btn-sm" href="#/signin/pupil">Sign in</a><a class="btn btn-light btn-sm hide-xs" href="#/signup">Sign up</a>';
+  var cta=session?'<a class="btn btn-light" href="#/'+(session.role==='admin'?'admin/pupils':'pupil/home')+'">Open my dashboard</a>':'<a class="btn btn-light" href="#/signup">Sign up for a student pass</a><a class="btn btn-line" href="#/signin/pupil">Sign in</a>';
+  return '<div class="app">'+
+  '<section class="stage" aria-labelledby="h1">'+
+    '<div class="stage-lines"></div>'+
+    '<svg class="wave" viewBox="0 0 520 200" fill="none" aria-hidden="true"><defs><linearGradient id="wg" x1="0" x2="1"><stop offset="0" stop-color="#9ad9ff"/><stop offset="1" stop-color="#ff7f95"/></linearGradient></defs><path d="M0 150C90 40 170 210 270 120S430 30 520 60" stroke="url(#wg)" stroke-width="2.5" stroke-linecap="round"/></svg>'+
+    '<header class="stage-head"><a class="brand" href="#/"><span class="mark">K</span><span class="brand-name">'+SCHOOL+'</span></a><nav class="head-links" aria-label="Site"><a class="link-plain" href="#/announcements">Announcements</a>'+nav+'</nav></header>'+
+    '<div class="stage-body"><div class="kwrap"><div class="sun"></div>'+kArt('hero')+'</div>'+
+    '<div class="copy"><h1 id="h1"><span class="h1-a">Kamulanga</span><span class="h1-b">Secondary School</span></h1>'+
+    '<p class="lede">Results, timetables, class notes and announcements in one place.</p>'+
+    '<p class="sub">Pupils sign up for a student pass. When the school office approves it, you can sign in from any phone or computer.</p>'+
+    '<div class="cta">'+cta+'</div></div></div>'+
+    '<div class="stage-foot"><span>Copyright '+new Date().getFullYear()+' '+SCHOOL+'</span><span>Only school staff can post or change information</span></div>'+
+  '</section>'+
+  '<main id="main" tabindex="-1" class="panel below split">'+
+    '<section aria-labelledby="ann-h"><h2 class="sec" id="ann-h">Latest announcements</h2>'+(latest.length?annList(latest,true)+'<a class="link-more" href="#/announcements">See all announcements</a>':emptyState('Nothing posted yet','New announcements from the school appear here.'))+'</section>'+
+    '<section aria-labelledby="pass-h"><h2 class="sec" id="pass-h">How to get your student pass</h2>'+
+    '<ol class="steps"><li><b>Sign up.</b>Enter your name and grade and choose a password. Your student pass number appears straight away.</li><li><b>Wait for approval.</b>The school office checks your details and approves your pass.</li><li><b>Sign in.</b>Use your pass number and password to see your results, timetable and class notes.</li></ol>'+
+    (session?'':'<a class="btn btn-solid" href="#/signup">Sign up for a student pass</a>')+'</section>'+
+  '</main>'+
+  '<p class="foot">Staff member? <a href="#/signin/admin">Sign in as admin</a></p>'+
+  '</div>';
+}
+function viewPublicNews(){
+  var items=sortNew(DB.news);
+  return '<div class="app"><header class="topbar"><a class="brand" href="#/"><span class="mark">K</span><span class="brand-name">'+SCHOOL+'</span></a><div class="who">'+(session?'<a class="btn btn-ghost btn-sm" href="#/'+(session.role==='admin'?'admin/pupils':'pupil/home')+'">My dashboard</a>':'<a class="btn btn-ghost btn-sm" href="#/signin/pupil">Sign in</a>')+'</div></header>'+
+  '<main id="main" tabindex="-1" class="panel"><h1 class="page-title">Announcements</h1><p class="lead">News and notices from the school office.</p>'+(items.length?annList(items,false):emptyState('Nothing posted yet','New announcements from the school appear here.'))+'</main></div>';
+}
+function authShell(content){
+  return '<div class="app"><header class="topbar"><a class="brand" href="#/"><span class="mark">K</span><span class="brand-name">'+SCHOOL+'</span></a></header>'+
+  '<div class="auth"><aside class="auth-art" aria-hidden="true"><div class="kwrap"><div class="sun"></div>'+kArt('auth')+'</div><p>Your results, timetable and notes, wherever you are.</p></aside>'+
+  '<main id="main" tabindex="-1" class="panel auth-form">'+content+'</main></div></div>';
+}
+function viewSignin(){
+  var role=parseRoute().tab==='admin'?'admin':'pupil',a=role==='admin';
+  return authShell(
+  '<h1 class="page-title">Sign in</h1><p class="lead">'+(a?'Staff sign in to post and manage school information.':'Use the pass number you received when you signed up.')+'</p>'+
+  '<div class="seg" role="tablist" aria-label="Account type"><a role="tab" aria-selected="'+(!a)+'" class="'+(!a?'on':'')+'" href="#/signin/pupil">Pupil</a><a role="tab" aria-selected="'+a+'" class="'+(a?'on':'')+'" href="#/signin/admin">Admin</a></div>'+
+  '<form data-form="signin" class="stack" novalidate>'+
+  '<div class="field"><label for="si-id">'+(a?'Username':'Pass number')+'</label><input id="si-id" name="uid" type="text" autocomplete="username" autocapitalize="'+(a?'none':'characters')+'" spellcheck="false" required placeholder="'+(a?'admin':'KSS-2026-0001')+'"></div>'+
+  fieldPw('si-pw','pw','Password','current-password')+
+  '<p class="err" role="alert"></p><button class="btn btn-solid" type="submit">Sign in</button></form>'+
+  (a?'':'<p class="alt">New pupil? <a href="#/signup">Sign up for a student pass</a></p>'));
+}
+function viewSignup(){
+  if(ui.created){
+    var p=pupilById(ui.created);
+    if(p)return authShell('<h1 class="page-title">Your student pass is ready</h1><p class="lead">Save this pass number. You need it, with your password, to sign in.</p>'+passCard(p)+
+      '<div class="btns"><button type="button" class="btn btn-solid" style="width:auto" data-copy="'+esc(p.id)+'">'+ic('copy',18)+'<span>Copy pass number</span></button><a class="btn btn-line" style="width:auto" href="#/signin/pupil">Go to sign in</a></div>'+
+      '<p class="alt">The school office must approve your pass before you can see results, timetables and notes. Sign in later to check.</p>');
+  }
+  return authShell(
+  '<h1 class="page-title">Sign up</h1><p class="lead">Create your student pass. The school office approves it before you can sign in to see your information.</p>'+
+  '<form data-form="signup" class="stack" novalidate>'+
+  '<div class="field"><label for="su-name">Full name</label><input id="su-name" name="fullName" type="text" autocomplete="name" required></div>'+
+  '<div class="row2"><div class="field"><label for="su-cls">Grade</label><select id="su-cls" name="cls">'+gradeOptions('')+'</select></div>'+
+  '<div class="field"><label for="su-ph">Guardian phone (optional)</label><input id="su-ph" name="phone" type="tel" autocomplete="tel" inputmode="tel"></div></div>'+
+  fieldPw('su-pw','pw','Password','new-password')+
+  '<p class="hint">Use at least 6 characters.</p>'+
+  fieldPw('su-pw2','pw2','Confirm password','new-password')+
+  '<p class="err" role="alert"></p><button class="btn btn-solid" type="submit">Sign up</button></form>'+
+  '<p class="alt">Already have a pass? <a href="#/signin/pupil">Sign in</a></p>');
+}
+
+/* ===== pupil views ===== */
+function todayIdx(){var d=new Date().getDay();return d>=1&&d<=5?d-1:-1}
+function lessonsFor(cls,idx){var tt=DB.timetable[cls];if(!tt)return null;return tt.rows.filter(function(r){return r.cells[idx]}).map(function(r){return {time:r.time,subject:r.cells[idx]}})}
+function lessonList(ls){return '<ul class="lessons">'+ls.map(function(l){return '<li><span class="t">'+esc(l.time)+'</span><span class="s">'+esc(l.subject)+'</span></li>'}).join('')+'</ul>'}
+
+function viewPupil(p,tab){
+  var body='';
+  if(p.status!=='approved'){
+    body='<h1 class="page-title">Hello, '+esc(p.name.split(' ')[0])+'</h1>'+
+    (p.status==='rejected'?'<div class="banner">The school office did not approve this pass. Visit the office to sort it out.</div>':'<div class="banner">Your pass is waiting for approval. Results, timetable and notes appear here once the school office approves it.</div>')+
+    passCard(p)+'<div class="btns"><button type="button" class="btn btn-line" data-copy="'+esc(p.id)+'">'+ic('copy',18)+'<span>Copy pass number</span></button></div>';
+    return '<div class="app">'+topbar(p.name)+'<main id="main" tabindex="-1" class="panel">'+body+'</main></div>';
+  }
+  if(tab==='home'){
+    var ti=todayIdx(),ls=ti>=0?lessonsFor(p.cls,ti):null,today;
+    if(ti<0)today='<p class="muted">No lessons today. School is closed at weekends.</p>';
+    else if(ls===null)today=emptyState('No timetable yet','The timetable for '+p.cls+' has not been posted.');
+    else if(!ls.length)today='<p class="muted">No lessons are listed for today.</p>';
+    else today=lessonList(ls);
+    var latest=sortNew(DB.news).slice(0,3);
+    body='<div class="grid2"><section><h1 class="page-title">Hello, '+esc(p.name.split(' ')[0])+'</h1><p class="lead">Your student pass</p>'+
+      (p.temp?'<div class="banner">The school reset your password. Choose a new one under Change password below.</div>':'')+
+      passCard(p)+'<div class="btns"><button type="button" class="btn btn-line" data-copy="'+esc(p.id)+'">'+ic('copy',18)+'<span>Copy pass number</span></button></div></section>'+
+      '<section><h2 class="sec">'+(ti>=0?'Today, '+DAYS_FULL[ti]:'Today')+'</h2>'+today+
+      '<h2 class="sec sec-gap">Latest announcements</h2>'+(latest.length?annList(latest,true)+'<a class="link-more" href="#/pupil/announcements">See all announcements</a>':emptyState('Nothing posted yet','New announcements appear here.'))+'</section></div>'+
+      '<details class="acct"'+(p.temp?' open':'')+'><summary>Change password</summary><form data-form="pw" data-role="pupil" class="stack" novalidate>'+fieldPw('pw-cur','cur','Current password','current-password')+fieldPw('pw-new','nw','New password','new-password')+'<p class="err" role="alert"></p><button class="btn btn-solid" type="submit" style="width:auto">Save new password</button></form></details>';
+  }else if(tab==='announcements'){
+    var all=sortNew(DB.news);
+    body='<h1 class="page-title">Announcements</h1><p class="lead">News and notices from the school office.</p>'+(all.length?annList(all,false):emptyState('Nothing posted yet','New announcements appear here.'));
+  }else if(tab==='results'){
+    var mine=sortNew(DB.results.filter(function(r){return r.pupilId===p.id}));
+    body='<h1 class="page-title">My results</h1><p class="lead">Results posted by the school for '+esc(p.name)+'.</p>'+(mine.length?mine.map(sheetHtml).join(''):emptyState('No results yet','Your results appear here when the school posts them.'));
+  }else if(tab==='timetable'){
+    body='<h1 class="page-title">Timetable</h1><p class="lead">Lessons for '+esc(p.cls)+'.</p>'+pupilTimetable(p.cls);
+  }else{
+    var notes=sortNew(DB.notes.filter(function(n){return n.cls==='All'||n.cls===p.cls}));
+    var subs=[];notes.forEach(function(n){if(n.subject&&subs.indexOf(n.subject)<0)subs.push(n.subject)});
+    if(ui.noteSubject!=='all'&&subs.indexOf(ui.noteSubject)<0)ui.noteSubject='all';
+    var shown=notes.filter(function(n){return ui.noteSubject==='all'||n.subject===ui.noteSubject});
+    body='<h1 class="page-title">Class notes</h1><p class="lead">Notes from your teachers.</p>'+
+      (subs.length>1?'<div class="chips" role="group" aria-label="Filter by subject"><button type="button" class="chip-btn'+(ui.noteSubject==='all'?' on':'')+'" data-act="note-subject" data-s="all">All subjects</button>'+subs.map(function(s){return '<button type="button" class="chip-btn'+(ui.noteSubject===s?' on':'')+'" data-act="note-subject" data-s="'+esc(s)+'">'+esc(s)+'</button>'}).join('')+'</div>':'')+
+      (shown.length?shown.map(noteHtml).join(''):emptyState('No notes yet','Notes for '+p.cls+' appear here when your teachers post them.'));
+  }
+  return '<div class="app">'+topbar(p.name)+tabsNav('pupil',tab,PUPIL_TABS)+'<main id="main" tabindex="-1" class="panel" data-swipe>'+body+'</main></div>';
+}
+function sheetHtml(r){
+  var avg=r.rows.reduce(function(s,x){return s+x.mark},0)/r.rows.length,g=gradeOf(avg);
+  return '<article class="sheet-card"><div class="sheet-head"><h3>'+esc(r.term)+' '+esc(r.year)+'</h3><span class="muted">'+esc(r.assess)+', posted '+fmtDate(r.createdAt)+'</span></div>'+
+  '<div class="scroll-x"><table class="tbl"><thead><tr><th scope="col">Subject</th><th scope="col" class="num">Mark (out of 100)</th><th scope="col">Grade</th></tr></thead><tbody>'+
+  r.rows.map(function(x){var gg=gradeOf(x.mark);return '<tr><td>'+esc(x.subject)+'</td><td class="num">'+esc(x.mark)+'</td><td><b>'+gg[0]+'</b> <span class="muted">'+gg[1]+'</span></td></tr>'}).join('')+
+  '</tbody><tfoot><tr><th scope="row">Average</th><td class="num">'+avg.toFixed(1)+'</td><td>'+g[0]+' <span class="muted">'+g[1]+'</span></td></tr></tfoot></table></div>'+
+  (r.comment?'<p class="comment"><b>Teacher comment.</b> '+esc(r.comment)+'</p>':'')+'</article>';
+}
+function pupilTimetable(cls){
+  var tt=DB.timetable[cls];
+  if(!tt||!tt.rows.some(function(r){return r.cells.some(Boolean)}))return emptyState('No timetable yet','The timetable for '+cls+' has not been posted.');
+  var ti=todayIdx(),day=ui.ttDay!=null?ui.ttDay:(ti>=0?ti:0),ls=lessonsFor(cls,day);
+  var chips='<div class="chips tt-day" role="group" aria-label="Choose a day">'+DAYS_FULL.map(function(d,i){return '<button type="button" class="chip-btn'+(i===day?' on':'')+'" data-act="tt-day" data-d="'+i+'" aria-pressed="'+(i===day)+'">'+d+'</button>'}).join('')+'</div>';
+  var list='<div class="tt-day">'+(ls.length?lessonList(ls):'<p class="muted">No lessons are listed for '+DAYS_FULL[day]+'.</p>')+'</div>';
+  var week='<div class="tt-week scroll-x"><table><thead><tr><th scope="col">Time</th>'+DAYS_FULL.map(function(d,i){return '<th scope="col"'+(i===ti?' class="today"':'')+'>'+d+(i===ti?' (today)':'')+'</th>'}).join('')+'</tr></thead><tbody>'+
+    tt.rows.map(function(r){return '<tr><th scope="row" class="tcol">'+esc(r.time)+'</th>'+r.cells.map(function(c,i){return '<td'+(i===ti?' class="today"':'')+'>'+esc(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>';
+  return chips+list+week;
+}
+function noteHtml(n){
+  return '<details class="note"><summary><span class="note-title">'+esc(n.title)+'</span><span class="note-meta">'+(n.subject?'<span class="tag">'+esc(n.subject)+'</span>':'')+(n.cls==='All'?'<span>All grades</span>':'<span>'+esc(n.cls)+'</span>')+'<span>'+fmtDate(n.createdAt)+'</span></span></summary><div class="note-body">'+esc(n.body)+
+  (n.link?'<br><a class="btn btn-line btn-sm" href="'+esc(n.link)+'" target="_blank" rel="noopener noreferrer">'+ic('link',18)+'<span>Open link</span></a>':'')+'</div></details>';
+}
+
+/* ===== admin views ===== */
+function viewAdmin(tab){
+  var pending=DB.pupils.filter(function(p){return p.status==='pending'}).length;
+  var banners='';
+  if(DB.admin.usingDefault)banners+='<div class="banner">You are using the default admin password. <a href="#/admin/settings">Change it in Settings</a>.</div>';
+  if(!storageOk)banners+='<div class="banner">This browser is blocking saved data, so changes will be lost when you close the page.</div>';
+  var content={pupils:adminPupils,announcements:adminNews,results:adminResults,timetable:adminTimetable,notes:adminNotes,settings:adminSettings}[tab]();
+  return '<div class="app">'+topbar('Admin')+tabsNav('admin',tab,ADMIN_TABS,{pupils:pending})+'<main id="main" tabindex="-1" class="panel">'+banners+content+'</main></div>';
+}
+function adminPupils(){
+  var all=sortNew(DB.pupils);
+  var c={pending:0,approved:0,rejected:0};all.forEach(function(p){c[p.status]=(c[p.status]||0)+1});
+  var f=ui.filter,list=f==='all'?all:all.filter(function(p){return p.status===f});
+  var chips=[['pending','Waiting ('+c.pending+')'],['approved','Approved ('+c.approved+')'],['rejected','Not approved ('+c.rejected+')'],['all','All ('+all.length+')']];
+  var msgs={pending:['No sign-ups are waiting','New pupils appear here after they sign up.'],approved:['No approved pupils yet','Approve a sign-up to give a pupil access.'],rejected:['Nobody here','Pupils you do not approve appear here.'],all:['No pupils yet','Pupils appear here after they sign up.']};
+  var rows=list.map(function(p){
+    var b='';
+    if(p.status==='pending')b='<button type="button" class="btn btn-solid btn-sm" data-act="approve" data-id="'+esc(p.id)+'">'+ic('check',18)+'<span>Approve</span></button><button type="button" class="btn btn-line btn-sm" data-act="reject" data-id="'+esc(p.id)+'">Do not approve</button>';
+    else if(p.status==='approved')b='<button type="button" class="btn btn-line btn-sm" data-act="reset-pw" data-id="'+esc(p.id)+'">Reset password</button><button type="button" class="btn btn-line btn-sm" data-act="revoke" data-id="'+esc(p.id)+'">Remove access</button><button type="button" class="icon-btn" data-act="del-pupil" data-id="'+esc(p.id)+'" aria-label="Delete '+esc(p.name)+'">'+ic('trash',20)+'</button>';
+    else b='<button type="button" class="btn btn-solid btn-sm" data-act="approve" data-id="'+esc(p.id)+'">'+ic('check',18)+'<span>Approve</span></button><button type="button" class="icon-btn" data-act="del-pupil" data-id="'+esc(p.id)+'" aria-label="Delete '+esc(p.name)+'">'+ic('trash',20)+'</button>';
+    return '<li class="person" data-q="'+esc((p.name+' '+p.id+' '+p.cls).toLowerCase())+'"><div><div class="nm">'+esc(p.name)+' '+statusChip(p.status)+'</div><div class="meta">'+esc(p.id)+', '+esc(p.cls)+(p.phone?', guardian '+esc(p.phone):'')+'. Signed up '+fmtDate(p.createdAt)+'.</div></div><div class="p-act">'+b+'</div></li>';
+  }).join('');
+  return '<h1 class="page-title">Pupils</h1><p class="lead">Approve sign-ups so pupils can see their results, timetable and notes.</p>'+
+  '<div class="chips" role="group" aria-label="Filter pupils">'+chips.map(function(x){return '<button type="button" class="chip-btn'+(f===x[0]?' on':'')+'" data-act="filter" data-f="'+x[0]+'" aria-pressed="'+(f===x[0])+'">'+x[1]+'</button>'}).join('')+'</div>'+
+  (c.pending>1&&f==='pending'?'<div class="btns"><button type="button" class="btn btn-solid" data-act="approve-all">Approve all '+c.pending+' waiting</button></div>':'')+
+  (list.length>4?'<input class="search" type="search" placeholder="Search by name or pass number" aria-label="Search pupils" data-search="#plist">':'')+
+  (list.length?'<ul class="plain-list" id="plist">'+rows+'</ul>':emptyState(msgs[f][0],msgs[f][1]));
+}
+function adminNews(){
+  var edit=ui.editNews?DB.news.find(function(a){return a.id===ui.editNews}):null;
+  if(ui.editNews&&!edit)ui.editNews=null;
+  var items=sortNew(DB.news);
+  return '<h1 class="page-title">Announcements</h1><p class="lead">Everyone can read announcements, including visitors who are not signed in.</p>'+
+  '<form data-form="news" class="stack" novalidate><div class="row2"><div class="field"><label for="n-title">Title</label><input id="n-title" name="title" type="text" value="'+esc(edit?edit.title:'')+'" required></div>'+
+  '<div class="field"><label for="n-tag">Type</label><select id="n-tag" name="tag">'+TAGS.map(function(t){return '<option'+(edit&&edit.tag===t?' selected':'')+'>'+t+'</option>'}).join('')+'</select></div></div>'+
+  '<div class="field"><label for="n-body">Message</label><textarea id="n-body" name="body" required>'+esc(edit?edit.body:'')+'</textarea></div><p class="err" role="alert"></p>'+
+  '<div class="btns"><button class="btn btn-solid" type="submit">'+(edit?'Save changes':'Publish announcement')+'</button>'+(edit?'<button type="button" class="btn btn-line" data-act="cancel-edit" data-k="news">Cancel</button>':'')+'</div></form>'+
+  '<h2 class="sec sec-gap">Published</h2>'+
+  (items.length?'<ul class="plain-list">'+items.map(function(a){return '<li class="ann"><div class="ann-top"><span class="tag '+tagClass(a.tag)+'">'+esc(a.tag)+'</span><span>'+fmtDate(a.createdAt)+'</span></div><h3 class="item">'+esc(a.title)+'</h3><p>'+esc(a.body)+'</p><div class="btns"><button type="button" class="btn btn-line btn-sm" data-act="edit-news" data-id="'+esc(a.id)+'">'+ic('edit',18)+'<span>Edit</span></button><button type="button" class="btn btn-line btn-sm" data-act="del-news" data-id="'+esc(a.id)+'">'+ic('trash',18)+'<span>Delete</span></button></div></li>'}).join('')+'</ul>':emptyState('Nothing published','Use the form above to post your first announcement.'));
+}
+function resRowHtml(s,m){
+  return '<div class="res-row"><input class="r-sub" type="text" list="subject-list" placeholder="Subject" aria-label="Subject" value="'+esc(s)+'"><input class="r-mark" type="number" inputmode="decimal" min="0" max="100" step="0.5" placeholder="Mark" aria-label="Mark out of 100" value="'+esc(m)+'"><button type="button" class="icon-btn" data-act="res-del-row" aria-label="Remove subject">'+ic('x',20)+'</button></div>';
+}
+function adminResults(){
+  var edit=ui.editRes?DB.results.find(function(r){return r.id===ui.editRes}):null;
+  if(ui.editRes&&!edit)ui.editRes=null;
+  var approved=DB.pupils.filter(function(p){return p.status==='approved'}).sort(function(a,b){return a.cls.localeCompare(b.cls,undefined,{numeric:true})||a.name.localeCompare(b.name)});
+  var rows=edit?edit.rows.map(function(r){return resRowHtml(r.subject,r.mark)}).join(''):['English','Mathematics','Biology','Chemistry','Physics','Geography'].map(function(s){return resRowHtml(s,'')}).join('');
+  var items=sortNew(DB.results);
+  var form=approved.length?'<form data-form="result" class="stack" novalidate>'+
+    '<div class="row2"><div class="field"><label for="r-pupil">Pupil</label><select id="r-pupil" name="pupil" required><option value="">Choose a pupil</option>'+approved.map(function(p){return '<option value="'+esc(p.id)+'"'+(edit&&edit.pupilId===p.id?' selected':'')+'>'+esc(p.name)+' ('+esc(p.cls)+', '+esc(p.id)+')</option>'}).join('')+'</select></div>'+
+    '<div class="field"><label for="r-term">Term</label><select id="r-term" name="term">'+TERMS.map(function(t){return '<option'+(edit&&edit.term===t?' selected':'')+'>'+t+'</option>'}).join('')+'</select></div>'+
+    '<div class="field"><label for="r-year">Year</label><input id="r-year" name="year" type="number" inputmode="numeric" min="2000" max="2100" value="'+(edit?esc(edit.year):new Date().getFullYear())+'"></div>'+
+    '<div class="field"><label for="r-as">Assessment</label><input id="r-as" name="assess" type="text" value="'+esc(edit?edit.assess:'End of term')+'"></div></div>'+
+    '<div><div class="lbl small" style="font-weight:600;margin-bottom:8px">Subjects and marks (out of 100)</div><div id="res-rows">'+rows+'</div><datalist id="subject-list">'+SUBJECTS.map(function(s){return '<option value="'+s+'">'}).join('')+'</datalist><button type="button" class="btn btn-line btn-sm" data-act="res-add-row">'+ic('plus',18)+'<span>Add subject</span></button></div>'+
+    '<div class="field"><label for="r-com">Teacher comment (optional)</label><textarea id="r-com" name="comment" rows="3">'+esc(edit?edit.comment:'')+'</textarea></div><p class="err" role="alert"></p>'+
+    '<div class="btns"><button class="btn btn-solid" type="submit">'+(edit?'Save changes':'Publish results')+'</button>'+(edit?'<button type="button" class="btn btn-line" data-act="cancel-edit" data-k="res">Cancel</button>':'')+'</div></form>'
+    :emptyState('No approved pupils yet','Approve a pupil in the Pupils tab, then post their results here.');
+  return '<h1 class="page-title">Results</h1><p class="lead">Each pupil sees only their own results.</p>'+form+
+  '<h2 class="sec sec-gap">Published results</h2>'+
+  (items.length?(items.length>4?'<input class="search" type="search" placeholder="Search by pupil name or pass number" aria-label="Search results" data-search="#rlist">':'')+'<ul class="plain-list" id="rlist">'+items.map(function(r){
+    var p=pupilById(r.pupilId);if(!p)return '';
+    var avg=r.rows.reduce(function(s,x){return s+x.mark},0)/r.rows.length;
+    return '<li class="person" data-q="'+esc((p.name+' '+p.id).toLowerCase())+'"><div><div class="nm">'+esc(p.name)+'</div><div class="meta">'+esc(p.cls)+', '+esc(r.term)+' '+esc(r.year)+', '+esc(r.assess)+'. Average '+avg.toFixed(1)+'.</div></div><div class="p-act"><button type="button" class="btn btn-line btn-sm" data-act="edit-res" data-id="'+esc(r.id)+'">'+ic('edit',18)+'<span>Edit</span></button><button type="button" class="btn btn-line btn-sm" data-act="del-res" data-id="'+esc(r.id)+'">'+ic('trash',18)+'<span>Delete</span></button></div></li>';
+  }).join('')+'</ul>':emptyState('No results posted','Published results are listed here.'));
+}
+function defaultRows(){
+  var t=['07:30–08:10','08:10–08:50','08:50–09:30','09:30–10:00','10:00–10:40','10:40–11:20','11:20–12:00','12:00–12:40'];
+  return t.map(function(x,i){return {time:x,cells:i===3?['Break','Break','Break','Break','Break']:['','','','','']}});
+}
+function ttRowHtml(r){
+  return '<tr data-row><th scope="row"><span class="t-wrap"><input class="t-time" type="text" aria-label="Time" placeholder="07:30–08:10" value="'+esc(r.time)+'"><button type="button" class="icon-btn" data-act="tt-del-row" aria-label="Remove period">'+ic('x',20)+'</button></span></th>'+
+  r.cells.map(function(c,i){return '<td><input class="t-cell" type="text" aria-label="'+DAYS_FULL[i]+'" value="'+esc(c)+'"></td>'}).join('')+'</tr>';
+}
+function adminTimetable(){
+  var cls=ui.ttClass,tt=DB.timetable[cls],rows=tt&&tt.rows.length?tt.rows:defaultRows();
+  return '<h1 class="page-title">Timetable</h1><p class="lead">Each grade has its own timetable. Leave a box empty when there is no lesson.</p>'+
+  '<form data-form="tt" class="stack" novalidate><div class="field" style="max-width:260px"><label for="tt-cls">Grade</label><select id="tt-cls" data-change="tt-class">'+gradeOptions(cls)+'</select></div>'+
+  '<div class="scroll-x"><table class="tt-edit"><thead><tr><th scope="col">Time</th>'+DAYS_FULL.map(function(d){return '<th scope="col">'+d+'</th>'}).join('')+'</tr></thead><tbody id="tt-body">'+rows.map(ttRowHtml).join('')+'</tbody></table></div>'+
+  '<div class="btns"><button type="button" class="btn btn-line btn-sm" data-act="tt-add-row">'+ic('plus',18)+'<span>Add period</span></button></div><p class="err" role="alert"></p>'+
+  '<div class="btns"><button class="btn btn-solid" type="submit">Save timetable for '+esc(cls)+'</button></div></form>';
+}
+function adminNotes(){
+  var edit=ui.editNote?DB.notes.find(function(n){return n.id===ui.editNote}):null;
+  if(ui.editNote&&!edit)ui.editNote=null;
+  var items=sortNew(DB.notes);
+  return '<h1 class="page-title">Class notes</h1><p class="lead">Pupils see notes for their own grade and notes posted to all grades.</p>'+
+  '<form data-form="note" class="stack" novalidate><div class="row2"><div class="field"><label for="nt-title">Title</label><input id="nt-title" name="title" type="text" value="'+esc(edit?edit.title:'')+'" required></div>'+
+  '<div class="field"><label for="nt-sub">Subject</label><input id="nt-sub" name="subject" type="text" list="subject-list" value="'+esc(edit?edit.subject:'')+'"></div>'+
+  '<div class="field"><label for="nt-cls">Post to</label><select id="nt-cls" name="cls"><option value="All"'+(edit&&edit.cls==='All'?' selected':'')+'>All grades</option>'+GRADES.map(function(g){return '<option'+(edit&&edit.cls===g?' selected':'')+'>'+g+'</option>'}).join('')+'</select></div></div>'+
+  '<datalist id="subject-list">'+SUBJECTS.map(function(s){return '<option value="'+s+'">'}).join('')+'</datalist>'+
+  '<div class="field"><label for="nt-body">Note</label><textarea id="nt-body" name="body" rows="6" required>'+esc(edit?edit.body:'')+'</textarea></div>'+
+  '<div class="field"><label for="nt-link">Link (optional)</label><input id="nt-link" name="link" type="url" inputmode="url" placeholder="https://" value="'+esc(edit?edit.link:'')+'"></div><p class="err" role="alert"></p>'+
+  '<div class="btns"><button class="btn btn-solid" type="submit">'+(edit?'Save changes':'Publish note')+'</button>'+(edit?'<button type="button" class="btn btn-line" data-act="cancel-edit" data-k="note">Cancel</button>':'')+'</div></form>'+
+  '<h2 class="sec sec-gap">Published notes</h2>'+
+  (items.length?'<ul class="plain-list">'+items.map(function(n){return '<li class="person"><div><div class="nm">'+esc(n.title)+'</div><div class="meta">'+(n.subject?esc(n.subject)+', ':'')+(n.cls==='All'?'All grades':esc(n.cls))+'. Posted '+fmtDate(n.createdAt)+'.</div></div><div class="p-act"><button type="button" class="btn btn-line btn-sm" data-act="edit-note" data-id="'+esc(n.id)+'">'+ic('edit',18)+'<span>Edit</span></button><button type="button" class="btn btn-line btn-sm" data-act="del-note" data-id="'+esc(n.id)+'">'+ic('trash',18)+'<span>Delete</span></button></div></li>'}).join('')+'</ul>':emptyState('No notes published','Use the form above to post your first note.'));
+}
+function adminSettings(){
+  return '<h1 class="page-title">Settings</h1><p class="lead">Admin account and site data.</p>'+
+  '<h2 class="sec">Change admin password</h2><form data-form="pw" data-role="admin" class="stack" style="max-width:420px;margin-top:10px" novalidate>'+fieldPw('pw-cur','cur','Current password','current-password')+fieldPw('pw-new','nw','New password','new-password')+'<p class="hint">Use at least 8 characters.</p><p class="err" role="alert"></p><button class="btn btn-solid" type="submit" style="width:auto">Save new password</button></form>'+
+  '<h2 class="sec sec-gap">Where site data is kept</h2><div class="callout"><p>Announcements, results, timetables, notes and pupil accounts are saved in this browser only. Pupils on other phones or computers will not see what you post here until the site is connected to a shared database.</p><p>Only the admin account can change school information. Pupils can only read their own data.</p></div>'+
+  '<h2 class="sec sec-gap">Erase all data</h2><p class="muted">Removes every pupil, result, timetable, note and announcement from this browser and resets the admin password.</p><button type="button" class="btn btn-danger" data-act="reset-all">Erase all data</button>';
+}
+
+/* ===== actions (clicks) ===== */
+function setPupil(id,fn){mutate(function(db){var p=db.pupils.find(function(x){return x.id===id});if(p)fn(p)})}
+var actions={
+  'toggle-pw':function(el){var inp=el.parentElement.querySelector('input'),show=inp.type==='password';inp.type=show?'text':'password';el.innerHTML=ic(show?'eyeoff':'eye',20);el.setAttribute('aria-label',show?'Hide password':'Show password')},
+  signout:function(){setSession(null);toast('Signed out');go('#/')},
+  filter:function(el){ui.filter=el.dataset.f;render()},
+  'note-subject':function(el){ui.noteSubject=el.dataset.s;render()},
+  'tt-day':function(el){ui.ttDay=Number(el.dataset.d);render()},
+  approve:function(el){if(!guardAdmin())return;var id=el.dataset.id,nm='';setPupil(id,function(p){p.status='approved';p.approvedAt=Date.now();nm=p.name});toast(nm+' approved');render()},
+  reject:function(el){if(!guardAdmin())return;var nm='';setPupil(el.dataset.id,function(p){p.status='rejected';nm=p.name});toast(nm+' not approved');render()},
+  'approve-all':async function(){
+    if(!guardAdmin())return;
+    var n=DB.pupils.filter(function(p){return p.status==='pending'}).length;
+    if(!await confirmBox('Approve '+n+' pupils?','Everyone waiting will be able to sign in and see their information.','Approve all'))return;
+    mutate(function(db){db.pupils.forEach(function(p){if(p.status==='pending'){p.status='approved';p.approvedAt=Date.now()}})});
+    toast(n+' pupils approved');render();
+  },
+  revoke:async function(el){
+    if(!guardAdmin())return;var p=pupilById(el.dataset.id);if(!p)return;
+    if(!await confirmBox('Remove access for '+p.name+'?','They will not be able to see results, timetables or notes until you approve them again.','Remove access',true))return;
+    setPupil(p.id,function(x){x.status='rejected'});toast('Access removed');render();
+  },
+  'del-pupil':async function(el){
+    if(!guardAdmin())return;var p=pupilById(el.dataset.id);if(!p)return;
+    if(!await confirmBox('Delete '+p.name+'?','This deletes the pupil and every result posted for them. You cannot undo this.','Delete pupil',true))return;
+    mutate(function(db){db.pupils=db.pupils.filter(function(x){return x.id!==p.id});db.results=db.results.filter(function(r){return r.pupilId!==p.id})});
+    toast('Pupil deleted');render();
+  },
+  'reset-pw':async function(el){
+    if(!guardAdmin())return;var p=pupilById(el.dataset.id);if(!p)return;
+    if(!await confirmBox('Reset password for '+p.name+'?','They get a temporary password that you give to them. They should change it after signing in.','Reset password'))return;
+    var tmp=tempPassword(),salt=rnd(16),hash=await hashPw(tmp,salt);
+    setPupil(p.id,function(x){x.salt=salt;x.hash=hash;x.temp=true});
+    await modal({title:'Temporary password',body:'<p>Give this password to '+esc(p.name)+' ('+esc(p.id)+'). It is only shown once.</p><code class="big">'+esc(tmp)+'</code><button type="button" class="btn btn-line" style="width:100%" data-copy="'+esc(tmp)+'">'+ic('copy',18)+'<span>Copy password</span></button>',buttons:[{label:'Done',cls:'btn-solid'}]});
+  },
+  'edit-news':function(el){if(!guardAdmin())return;ui.editNews=el.dataset.id;render();window.scrollTo(0,0)},
+  'del-news':async function(el){if(!guardAdmin())return;if(!await confirmBox('Delete this announcement?','It disappears from the site straight away.','Delete',true))return;mutate(function(db){db.news=db.news.filter(function(a){return a.id!==el.dataset.id})});toast('Announcement deleted');render()},
+  'edit-res':function(el){if(!guardAdmin())return;ui.editRes=el.dataset.id;render();window.scrollTo(0,0)},
+  'del-res':async function(el){if(!guardAdmin())return;if(!await confirmBox('Delete these results?','The pupil will no longer see them.','Delete',true))return;mutate(function(db){db.results=db.results.filter(function(r){return r.id!==el.dataset.id})});toast('Results deleted');render()},
+  'edit-note':function(el){if(!guardAdmin())return;ui.editNote=el.dataset.id;render();window.scrollTo(0,0)},
+  'del-note':async function(el){if(!guardAdmin())return;if(!await confirmBox('Delete this note?','Pupils will no longer see it.','Delete',true))return;mutate(function(db){db.notes=db.notes.filter(function(n){return n.id!==el.dataset.id})});toast('Note deleted');render()},
+  'cancel-edit':function(el){var k=el.dataset.k;if(k==='news')ui.editNews=null;if(k==='res')ui.editRes=null;if(k==='note')ui.editNote=null;render()},
+  'res-add-row':function(){var b=$('#res-rows');b.insertAdjacentHTML('beforeend',resRowHtml('',''));var i=$$('.r-sub',b);i[i.length-1].focus()},
+  'res-del-row':function(el){var row=el.closest('.res-row');if($$('.res-row').length>1)row.remove();else{$$('input',row).forEach(function(i){i.value=''})}},
+  'tt-add-row':function(){var b=$('#tt-body');b.insertAdjacentHTML('beforeend',ttRowHtml({time:'',cells:['','','','','']}));var i=$$('.t-time',b);i[i.length-1].focus()},
+  'tt-del-row':function(el){el.closest('tr').remove()},
+  'reset-all':async function(){
+    if(!guardAdmin())return;
+    if(!await confirmBox('Erase all data?','This removes every pupil, result, timetable, note and announcement, and signs you out. You cannot undo this.','Erase everything',true))return;
+    try{localStorage.removeItem(KEY)}catch(e){}
+    memStore=null;DB=null;setSession(null);await init(true);toast('All data erased');go('#/');
+  }
+};
+var changes={'tt-class':function(el){ui.ttClass=el.value;render()}};
+
+document.addEventListener('click',function(e){
+  var c=e.target.closest('[data-copy]');
+  if(c){copyText(c.dataset.copy).then(function(ok){toast(ok?'Copied':'Could not copy. Select the text and copy it yourself.',ok?'':'err')});return}
+  var el=e.target.closest('[data-act]');if(!el)return;
+  var fn=actions[el.dataset.act];if(!fn)return;
+  haptic();
+  Promise.resolve().then(function(){return fn(el,e)}).catch(function(err){console.error(err);toast('Something went wrong. Try again.','err')});
+});
+document.addEventListener('change',function(e){var el=e.target.closest('[data-change]');if(el&&changes[el.dataset.change])changes[el.dataset.change](el)});
+document.addEventListener('input',function(e){
+  var el=e.target.closest('[data-search]');if(!el)return;
+  var q=el.value.trim().toLowerCase();
+  $$(el.dataset.search+' [data-q]').forEach(function(li){li.hidden=!!q&&li.dataset.q.indexOf(q)<0});
+});
+
+/* ===== form handlers ===== */
+function ferr(f,msg,field){var e=$('.err',f);if(e)e.textContent=msg;if(field&&f.elements[field])f.elements[field].focus()}
+function fclear(f){var e=$('.err',f);if(e)e.textContent=''}
+var forms={
+  async signin(f){
+    fclear(f);
+    var role=parseRoute().tab==='admin'?'admin':'pupil',idv=clean(f.elements.uid.value),pw=f.elements.pw.value;
+    if(!idv||!pw)return ferr(f,role==='admin'?'Enter your username and password.':'Enter your pass number and password.',idv?'pw':'uid');
+    var key=role+':'+idv.toLowerCase(),wait=lockedFor(key);
+    if(wait)return ferr(f,'Too many attempts. Try again in '+wait+' seconds.');
+    var db=load()||DB;DB=db;
+    if(role==='admin'){
+      var a=DB.admin,ok=idv.toLowerCase()===a.username&&(await hashPw(pw,a.salt))===a.hash;
+      if(!ok){recordFail(key);return ferr(f,'Username or password is incorrect.','pw')}
+      setSession({role:'admin'});toast('Signed in as admin');go('#/admin/pupils');
+    }else{
+      var p=DB.pupils.find(function(x){return x.id===idv.toUpperCase()});
+      var ok2=p&&(await hashPw(pw,p.salt))===p.hash;
+      if(!ok2){recordFail(key);return ferr(f,'Pass number or password is incorrect.','pw')}
+      setSession({role:'pupil',id:p.id});toast('Welcome, '+p.name.split(' ')[0]);go('#/pupil/home');
+    }
+  },
+  async signup(f){
+    fclear(f);
+    var name=clean(f.elements.fullName.value),cls=f.elements.cls.value,phone=clean(f.elements.phone.value),pw=f.elements.pw.value,pw2=f.elements.pw2.value;
+    if(name.length<3||!/[A-Za-z]/.test(name))return ferr(f,'Enter your full name.','fullName');
+    if(GRADES.indexOf(cls)<0)return ferr(f,'Choose your grade.','cls');
+    if(phone&&!/^[0-9+()\s-]{7,20}$/.test(phone))return ferr(f,'Enter a valid phone number, or leave it empty.','phone');
+    if(pw.length<6)return ferr(f,'Your password needs at least 6 characters.','pw');
+    if(pw!==pw2)return ferr(f,'The two passwords do not match.','pw2');
+    var salt=rnd(16),hash=await hashPw(pw,salt),id=nextPass();
+    mutate(function(db){db.pupils.push({id:id,name:name,cls:cls,phone:phone,salt:salt,hash:hash,status:'pending',createdAt:Date.now()})});
+    ui.created=id;toast('Your student pass is ready');render({top:true});
+  },
+  news(f){
+    if(!guardAdmin())return;fclear(f);
+    var title=clean(f.elements.title.value),body=f.elements.body.value.trim(),tag=f.elements.tag.value;
+    if(title.length<3)return ferr(f,'Enter a title of at least 3 characters.','title');
+    if(body.length<5)return ferr(f,'Write the announcement message.','body');
+    if(TAGS.indexOf(tag)<0)tag='General';
+    var was=ui.editNews;
+    mutate(function(db){
+      if(was){var a=db.news.find(function(x){return x.id===was});if(a){a.title=title;a.body=body;a.tag=tag;a.updatedAt=Date.now();return}}
+      db.news.push({id:uid(),title:title,body:body,tag:tag,createdAt:Date.now()});
+    });
+    ui.editNews=null;toast(was?'Saved':'Published');render();
+  },
+  result(f){
+    if(!guardAdmin())return;fclear(f);
+    var pupil=f.elements.pupil.value,term=f.elements.term.value,year=Number(f.elements.year.value),assess=clean(f.elements.assess.value),comment=f.elements.comment.value.trim();
+    if(!pupil||!pupilById(pupil))return ferr(f,'Choose a pupil.','pupil');
+    if(!year||year<2000||year>2100)return ferr(f,'Enter a valid year.','year');
+    if(!assess)return ferr(f,'Enter the assessment name, for example End of term.','assess');
+    var rows=[],bad=null;
+    $$('.res-row',f).forEach(function(r){
+      var s=clean($('.r-sub',r).value),m=$('.r-mark',r).value;
+      if(!s&&m==='')return;
+      var n=Number(m);
+      if(!s||m===''||isNaN(n)||n<0||n>100){bad=bad||$('.r-mark',r);return}
+      rows.push({subject:s,mark:n});
+    });
+    if(bad){ferr(f,'Each subject needs a name and a mark from 0 to 100.');bad.focus();return}
+    if(!rows.length)return ferr(f,'Add at least one subject and mark.');
+    var was=ui.editRes,replaced=false;
+    mutate(function(db){
+      var rec=was?db.results.find(function(x){return x.id===was}):null;
+      if(!rec)rec=db.results.find(function(x){return x.pupilId===pupil&&x.term===term&&x.year===year&&x.assess.toLowerCase()===assess.toLowerCase()});
+      if(rec){rec.pupilId=pupil;rec.term=term;rec.year=year;rec.assess=assess;rec.rows=rows;rec.comment=comment;rec.updatedAt=Date.now();replaced=true}
+      else db.results.push({id:uid(),pupilId:pupil,term:term,year:year,assess:assess,rows:rows,comment:comment,createdAt:Date.now()});
+    });
+    ui.editRes=null;toast(was||replaced?'Saved':'Published');render({top:true});
+  },
+  note(f){
+    if(!guardAdmin())return;fclear(f);
+    var title=clean(f.elements.title.value),subject=clean(f.elements.subject.value),cls=f.elements.cls.value,body=f.elements.body.value.trim(),link=f.elements.link.value.trim();
+    if(title.length<3)return ferr(f,'Enter a title of at least 3 characters.','title');
+    if(body.length<3)return ferr(f,'Write the note.','body');
+    if(cls!=='All'&&GRADES.indexOf(cls)<0)cls='All';
+    if(link&&!/^https?:\/\/\S+$/i.test(link))return ferr(f,'The link must start with http:// or https://','link');
+    var was=ui.editNote;
+    mutate(function(db){
+      if(was){var n=db.notes.find(function(x){return x.id===was});if(n){n.title=title;n.subject=subject;n.cls=cls;n.body=body;n.link=link;n.updatedAt=Date.now();return}}
+      db.notes.push({id:uid(),title:title,subject:subject,cls:cls,body:body,link:link,createdAt:Date.now()});
+    });
+    ui.editNote=null;toast(was?'Saved':'Published');render();
+  },
+  tt(f){
+    if(!guardAdmin())return;fclear(f);
+    var rows=[];
+    $$('tr[data-row]',f).forEach(function(tr){
+      var time=clean($('.t-time',tr).value),cells=$$('.t-cell',tr).map(function(i){return clean(i.value)});
+      if(!time&&!cells.some(Boolean))return;
+      rows.push({time:time,cells:cells});
+    });
+    if(rows.some(function(r){return !r.time}))return ferr(f,'Every row with lessons needs a time, for example 07:30–08:10.');
+    var cls=ui.ttClass;
+    mutate(function(db){db.timetable[cls]={rows:rows,updatedAt:Date.now()}});
+    toast('Saved');render();
+  },
+  async pw(f){
+    fclear(f);
+    var role=f.dataset.role,cur=f.elements.cur.value,nw=f.elements.nw.value,min=role==='admin'?8:6;
+    if(nw.length<min)return ferr(f,'Your new password needs at least '+min+' characters.','nw');
+    if(nw===cur)return ferr(f,'Choose a password that is different from the current one.','nw');
+    var s=getSession();if(!s||s.role!==role)return ferr(f,'Sign in again to change your password.');
+    var rec=role==='admin'?DB.admin:pupilById(s.id);
+    if(!rec||(await hashPw(cur,rec.salt))!==rec.hash)return ferr(f,'Your current password is not correct.','cur');
+    var salt=rnd(16),hash=await hashPw(nw,salt);
+    mutate(function(db){var r=role==='admin'?db.admin:db.pupils.find(function(x){return x.id===s.id});r.salt=salt;r.hash=hash;delete r.usingDefault;delete r.temp});
+    f.reset();toast('Saved');render();
+  }
+};
+document.addEventListener('submit',function(e){
+  var f=e.target.closest('form[data-form]');if(!f)return;
+  e.preventDefault();
+  var fn=forms[f.dataset.form];if(!fn)return;
+  var btn=f.querySelector('[type=submit]');if(btn)btn.disabled=true;
+  Promise.resolve().then(function(){return fn(f)}).catch(function(er){console.error(er);ferr(f,'Something went wrong. Try again.')}).then(function(){if(btn&&btn.isConnected)btn.disabled=false});
+});
+
+/* ===== swipe between pupil tabs (read-only area only) ===== */
+var sx=null,sy=0,st=0;
+document.addEventListener('touchstart',function(e){
+  if(e.touches.length!==1||!e.target.closest('[data-swipe]')||e.target.closest('input,textarea,select,.scroll-x,.chips,details[open]')){sx=null;return}
+  sx=e.touches[0].clientX;sy=e.touches[0].clientY;st=Date.now();
+},{passive:true});
+document.addEventListener('touchend',function(e){
+  if(sx==null)return;
+  var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;sx=null;
+  if(Math.abs(dx)<90||Math.abs(dy)>45||Date.now()-st>500)return;
+  var r=parseRoute();if(r.name!=='pupil')return;
+  var i=PUPIL_TABS.findIndex(function(x){return x[0]===r.tab}),n=PUPIL_TABS[i+(dx<0?1:-1)];
+  if(n){haptic();location.hash='#/pupil/'+n[0]}
+},{passive:true});
+
+/* ===== start ===== */
+async function init(reseed){
+  DB=reseed?null:load();
+  if(!DB||!DB.admin){
+    DB=DB||blank();
+    var salt=rnd(16);
+    DB.admin={username:DEFAULT_ADMIN_USER,salt:salt,hash:await hashPw(DEFAULT_ADMIN_PW,salt)};
+    if(!DB.news.length)DB.news.push({id:uid(),title:'Welcome to the Kamulanga Secondary School site',tag:'General',body:'Pupils can now sign up for a student pass. After the school office approves your pass, you can sign in to see your results, timetable and class notes.',createdAt:Date.now()});
+    save();
+  }
+  session=getSession();
+  render({top:true});
+}
+init();
+})();
+</script>
+<script src="kss-sdk.js"></script>
+<script src="glass.js"></script>
+</body>
+</html>
