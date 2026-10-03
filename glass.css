@@ -1,0 +1,73 @@
+/* Liquid glass layer for the KSS site. Loaded after the page's own styles. */
+:root{
+  --g-fill:rgba(247,255,252,.44);--g-fill-2:rgba(255,255,255,.22);
+  --g-rim:rgba(255,255,255,.62);--g-rim-low:rgba(255,255,255,.14);
+  --g-shadow:0 18px 48px rgba(3,45,37,.28);--g-blur:blur(14px) saturate(180%);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --g-fill:rgba(10,40,34,.5);--g-fill-2:rgba(255,255,255,.07);--g-rim:rgba(255,255,255,.26);--g-rim-low:rgba(255,255,255,.06);--g-shadow:0 18px 48px rgba(0,0,0,.45)}}
+:root[data-theme="dark"]{--g-fill:rgba(10,40,34,.5);--g-fill-2:rgba(255,255,255,.07);--g-rim:rgba(255,255,255,.26);--g-rim-low:rgba(255,255,255,.06);--g-shadow:0 18px 48px rgba(0,0,0,.45)}
+
+/* glass surfaces: frosted body, bright top rim, faint bottom rim, and a light that follows the pointer */
+body .panel,body .sheet,body .topbar,body .toast,body .seg{
+  background:
+    radial-gradient(420px circle at var(--mx,20%) var(--my,0%),var(--g-fill-2),transparent 60%),
+    linear-gradient(145deg,rgba(255,255,255,.18),transparent 45%),
+    var(--g-fill);
+  -webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);
+  border:1px solid var(--g-rim-low);
+  box-shadow:inset 0 1.5px 0 var(--g-rim),inset 0 -1px 0 var(--g-rim-low),inset 1px 0 0 var(--g-rim-low),var(--g-shadow);
+}
+body .panel,body .sheet{border-radius:26px}
+/* hero stays a deep-teal tint so its white text keeps contrast */
+body .stage{border-radius:30px;background:radial-gradient(520px circle at var(--mx,25%) var(--my,0%),rgba(255,255,255,.2),transparent 60%),linear-gradient(145deg,rgba(8,110,92,.62),rgba(5,60,50,.72));-webkit-backdrop-filter:blur(16px) saturate(170%);backdrop-filter:blur(16px) saturate(170%);border:1px solid var(--g-rim-low);box-shadow:inset 0 1.5px 0 var(--g-rim),inset 0 -1px 0 var(--g-rim-low),var(--g-shadow)}
+body .topbar{border-radius:999px}
+body .toast{color:var(--ink);border-radius:999px}
+body .toast.err{background:var(--danger-btn);color:var(--danger-btn-ink)}
+body .scrim{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+body .seg{border-radius:999px}
+body .seg a{border-radius:999px}
+body .seg a.on{background:var(--g-fill);box-shadow:inset 0 1px 0 var(--g-rim),0 2px 8px rgba(3,45,37,.18)}
+
+/* pills and buttons: glass, with solid accent kept for primary actions */
+body .tab{background:var(--g-fill-2);color:#fff;-webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);border:1px solid var(--g-rim-low);box-shadow:inset 0 1px 0 var(--g-rim-low)}
+body .tab.on{background:var(--g-fill);color:var(--ink);box-shadow:inset 0 1.5px 0 var(--g-rim),0 6px 18px rgba(3,45,37,.25)}
+body .btn{border-radius:999px}
+body .btn-solid{background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 88%,#fff),var(--accent));box-shadow:inset 0 1.5px 0 rgba(255,255,255,.45),0 6px 16px rgba(3,45,37,.28)}
+body .btn-line,body .chip-btn{background:var(--g-fill-2);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 var(--g-rim-low)}
+body .field input,body .field select,body .field textarea,body .search{border-radius:16px;background:rgba(255,255,255,.4);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body .field input,:root:not([data-theme="light"]) body .field select,:root:not([data-theme="light"]) body .field textarea{background:rgba(255,255,255,.06)}}
+body .pass{border-radius:22px;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.4),0 14px 34px rgba(4,60,48,.4)}
+
+/* instant press feedback: a ripple from the touch point plus a springy squash */
+.kss-rip{position:relative;overflow:hidden;isolation:isolate}
+.kss-rip>.rip{position:absolute;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,rgba(255,255,255,.75),rgba(255,255,255,.15) 60%,transparent 70%);transform:scale(0);opacity:.9;animation:kss-rip .55s ease-out forwards}
+@keyframes kss-rip{to{transform:scale(1);opacity:0}}
+body .btn,body .tab,body .chip-btn,body .icon-btn,body .seg a,body .brand{transition:transform .14s cubic-bezier(.3,1.6,.5,1),background-color .12s ease,box-shadow .12s ease}
+body .btn:active,body .tab:active,body .chip-btn:active,body .seg a:active,body .brand:active{transform:scale(.94)}
+body .ann:active,body .person:active,body details>summary:active{background:rgba(255,255,255,.28)}
+@media (hover:hover){body .btn:hover,body .tab:hover,body .chip-btn:hover{transform:translateY(-1px)}}
+body .panel,body .stage{animation:kss-in .35s ease-out both}
+@keyframes kss-in{from{opacity:.4;transform:translateY(8px) scale(.995)}to{opacity:1;transform:none}}
+
+/* top progress bar: shows the moment a page changes or the server is working */
+#kss-bar{position:fixed;left:0;top:0;height:3px;width:100%;z-index:300;pointer-events:none;transform-origin:left;transform:scaleX(0);opacity:0;background:linear-gradient(90deg,#ffb27a,#ff7a7a,#86ead0);box-shadow:0 0 10px rgba(255,178,122,.8)}
+#kss-bar.on{opacity:1;transform:scaleX(.85);transition:transform 1.6s cubic-bezier(.1,.8,.2,1)}
+#kss-bar.done{opacity:0;transform:scaleX(1);transition:transform .15s ease,opacity .35s ease .15s}
+
+/* background: soft light blobs, drifting books, and the school motto */
+#kss-bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+#kss-bg .blob{position:absolute;width:46vmax;height:46vmax;border-radius:50%;filter:blur(60px);opacity:.55;animation:kss-drift 26s ease-in-out infinite alternate}
+#kss-bg .b1{left:-14vmax;top:-10vmax;background:#86ead0}
+#kss-bg .b2{right:-16vmax;top:22vh;background:#ffb27a;opacity:.32;animation-duration:32s}
+#kss-bg .b3{left:20vw;bottom:-22vmax;background:#48c2a2;animation-duration:38s}
+#kss-bg .fl{position:absolute;left:var(--x);top:var(--y);animation:kss-float var(--t) ease-in-out var(--d) infinite alternate;will-change:transform}
+#kss-bg .book{width:var(--s);height:calc(var(--s)*1.28);filter:drop-shadow(0 10px 14px rgba(3,45,37,.35));opacity:.9}
+#kss-bg .word{font:700 var(--fs)/1 'Playfair Display',Georgia,serif;white-space:nowrap;color:rgba(255,255,255,.34);letter-spacing:.01em;text-shadow:0 2px 24px rgba(3,45,37,.25)}
+@keyframes kss-float{from{transform:translate3d(0,0,0) rotate(var(--r0))}to{transform:translate3d(var(--dx),var(--dy),0) rotate(var(--r1))}}
+@keyframes kss-drift{to{transform:translate3d(8vmax,6vmax,0) scale(1.12)}}
+@media (max-width:640px){#kss-bg .word{--fs:clamp(1.4rem,7vw,2.2rem)!important}}
+@media (prefers-reduced-motion:reduce){#kss-bg .fl,#kss-bg .blob,body .panel,body .stage{animation:none!important}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  body .panel,body .sheet,body .topbar,body .toast{background:var(--paper)}
+}
